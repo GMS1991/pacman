@@ -1,28 +1,45 @@
 import pygame
 import sys
 from Pacman import Pacman
-from Mapa import GameMap
+from Mapa import Mapa
 
 # Inicializar Pygame
 pygame.init()
 
 # Configurar la ventana del juego
-screen = pygame.display.set_mode((800, 600))
+pantalla = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Pacman")
 
 # Disenio del mapa
 TILE_SIZE = 40
-map_data = [
+# mapa = [
+#     "####################",
+#     "#........#.........#",
+#     "#.####.#.#.#######.#",
+#     "#........#.........#",
+#     "####################"
+# ]
+
+
+
+
+mapa = [
     "####################",
-    "#........#.........#",
-    "#.####.#.#.#######.#",
-    "#........#.........#",
+    "#.....#######......#",
+    "#..................#",
+    "#.#####.#  #.#####.#",
+    "#.......#  #.......#",
+    "#.##.##.#  #.##.##.#",
+    "#.......####.......#",
+    "#.####........####.#"
+    "#........##........#",
     "####################"
 ]
 
+
 # Crear instancias de Pacman y GameMap
 pacman = Pacman(1 * TILE_SIZE, 1 * TILE_SIZE, 5)
-game_map = GameMap(map_data, TILE_SIZE)
+mapa_juego = Mapa(mapa, TILE_SIZE)
 
 # Bucle principal del juego
 running = True
@@ -31,15 +48,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    keys = pygame.key.get_pressed()
-    pacman.move(keys, map_data, TILE_SIZE)
-
+    tecla = pygame.key.get_pressed()
+    pacman.mover(tecla, mapa, TILE_SIZE)
     # Dibujar en la ventana del juego
-    screen.fill((0, 0, 0))
-    game_map.draw(screen)
-    pacman.draw(screen, TILE_SIZE)
+    pantalla.fill((0, 0, 0))
+    mapa_juego.draw(pantalla)
+    pacman.dibujar(pantalla, TILE_SIZE)
     pygame.display.flip()
-
     pygame.time.Clock().tick(30)
 
 pygame.quit()

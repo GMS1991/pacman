@@ -1,16 +1,23 @@
 import pygame
 
-class GameMap:
-    def __init__(self, map_data, tile_size):
-        self.map_data = map_data
-        self.tile_size = tile_size
-        self.wall_color = (0, 0, 255)
-        self.point_color = (255, 255, 255)
+class Mapa:
+    
+    #Constructor
+    def __init__(self, mapa, panel):
+        self.mapa = mapa
+        self.panel = panel
+        self.color_pared = (0, 0, 255)
+        self.color_punto = (255, 255, 255)
 
-    def draw(self, screen):
-        for y, row in enumerate(self.map_data):
+    #dibujamos el mapa dinamicamente
+    def draw(self, pantalla):
+        for y, row in enumerate(self.mapa):
             for x, tile in enumerate(row):
                 if tile == "#":
-                    pygame.draw.rect(screen, self.wall_color, pygame.Rect(x * self.tile_size, y * self.tile_size, self.tile_size, self.tile_size))
+                    pygame.draw.rect(pantalla, self.color_pared,
+                                     pygame.Rect(x * self.panel, y * self.panel, 
+                                                 self.panel, self.panel))
                 else:
-                    pygame.draw.circle(screen, self.point_color, (x * self.tile_size + self.tile_size // 2, y * self.tile_size + self.tile_size // 2), 5)
+                    pygame.draw.circle(pantalla, self.color_punto, 
+                                       (x * self.panel + self.panel // 2,
+                                        y * self.panel + self.panel // 2), 5)
