@@ -37,7 +37,7 @@ mapa = [
 ]
 
 
-# Crear instancias de Pacman y GameMap
+# Crear instancias de Pacman y Mapa
 pacman = Pacman(1 * TILE_SIZE, 1 * TILE_SIZE, 5)
 mapa_juego = Mapa(mapa, TILE_SIZE)
 

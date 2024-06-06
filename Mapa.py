@@ -12,8 +12,8 @@ class Mapa:
     #dibujamos el mapa dinamicamente
     def draw(self, pantalla):
         for y, row in enumerate(self.mapa):
-            for x, tile in enumerate(row):
-                if tile == "#":
+            for x, signo in enumerate(row):
+                if signo == "#":
                     pygame.draw.rect(pantalla, self.color_pared,
                                      pygame.Rect(x * self.panel, y * self.panel, 
                                                  self.panel, self.panel))
